@@ -1,0 +1,21 @@
+.DS_Store
+node_modules
+/ dist
+
+# локальные env файлы
+.env.local
+.env. * .local
+
+# Файлы журнала
+npm-debug.log *
+yarn-debug.log *
+yarn-error.log *
+
+# Редактор каталогов и файлов
+.idea
+.vscode
+* .suo
+* .ntvs *
+* .njsproj
+* .sln
+* .sw ?

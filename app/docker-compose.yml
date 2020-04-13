@@ -1,0 +1,32 @@
+version: '3.7'
+services: 
+  server:
+    build: ./server
+    volumes: 
+      - ./server/src:/code/src/
+    depends_on: 
+      - db
+      - admin
+    restart: always
+    ports: 
+      - 8080:80
+  db: 
+    image: mariadb:10.5
+    environment: 
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes: 
+      - ./db:/var/lib/mysql
+    restart: always
+  admin:
+    image: phpmyadmin/phpmyadmin:5.0
+    environment: 
+      PMA_HOST: db
+    restart: always
+    depends_on: 
+      - db
+    ports: 
+      - 3030:80
+    volumes: 
+      - /sessions
+    links: 
+      - db
