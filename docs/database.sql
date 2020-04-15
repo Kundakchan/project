@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: db
--- Время создания: Апр 15 2020 г., 11:30
+-- Время создания: Апр 15 2020 г., 17:37
 -- Версия сервера: 10.5.2-MariaDB-1:10.5.2+maria~bionic
 -- Версия PHP: 7.4.4
 
@@ -47,10 +47,10 @@ CREATE TABLE `category_movie` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `comment`
+-- Структура таблицы `comments`
 --
 
-CREATE TABLE `comment` (
+CREATE TABLE `comments` (
   `id` varchar(6) NOT NULL,
   `key_user` varchar(16) NOT NULL,
   `key_movie` varchar(6) NOT NULL,
@@ -123,9 +123,9 @@ ALTER TABLE `category_movie`
   ADD KEY `key_movie` (`key_movie`,`key_category`);
 
 --
--- Индексы таблицы `comment`
+-- Индексы таблицы `comments`
 --
-ALTER TABLE `comment`
+ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `key_user` (`key_user`,`key_movie`);
 
