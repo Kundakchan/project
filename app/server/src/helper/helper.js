@@ -1,4 +1,4 @@
-exports.queryString = (data) => {
+exports.preparationLineUpdate = (data) => {
   const col = []
   const val = []
   for (let [key, value] of Object.entries(data)) {
@@ -10,4 +10,15 @@ exports.queryString = (data) => {
     }
   }
   return { key: col, value: val }
+}
+exports.preparationLineAdd = (data) => {
+  const key = []
+  const value = []
+  const point = []
+  for (let [col, val] of Object.entries(data)) {
+    key.push(col)
+    value.push(val)
+    point.push('?')
+  }
+  return { key: key, value: value, point: point}
 }
