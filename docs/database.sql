@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: db
--- Время создания: Апр 13 2020 г., 15:57
+-- Время создания: Апр 15 2020 г., 11:30
 -- Версия сервера: 10.5.2-MariaDB-1:10.5.2+maria~bionic
 -- Версия PHP: 7.4.4
 
@@ -51,44 +51,43 @@ CREATE TABLE `category_movie` (
 --
 
 CREATE TABLE `comment` (
-  `id` varchar(8) NOT NULL,
+  `id` varchar(6) NOT NULL,
   `key_user` varchar(16) NOT NULL,
   `key_movie` varchar(6) NOT NULL,
   `comment` text NOT NULL,
-  `create` datetime NOT NULL DEFAULT current_timestamp()
+  `create` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `like`
+-- Структура таблицы `likes`
 --
 
-CREATE TABLE `like` (
-  `id` varchar(8) NOT NULL,
+CREATE TABLE `likes` (
+  `id` varchar(6) NOT NULL,
   `key_user` varchar(16) NOT NULL,
-  `key_movie` varchar(8) NOT NULL,
-  `like` tinyint(1) NOT NULL,
-  `create` datetime NOT NULL DEFAULT current_timestamp()
+  `key_movie` varchar(6) NOT NULL,
+  `create` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `movie`
+-- Структура таблицы `movies`
 --
 
-CREATE TABLE `movie` (
+CREATE TABLE `movies` (
   `id` varchar(6) NOT NULL,
   `name` varchar(225) NOT NULL,
   `discription` text NOT NULL,
-  `create` datetime NOT NULL DEFAULT current_timestamp(),
-  `update` datetime DEFAULT NULL,
+  `create` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `age_movie` year(4) NOT NULL,
-  `small_baner` text NOT NULL,
-  `big_baner` text NOT NULL,
-  `TMDb` float(2,1) NOT NULL,
-  `IMDb` float(2,1) NOT NULL,
+  `small_banner` text NOT NULL,
+  `big_banner` text NOT NULL,
+  `TMDb` float(2,1) DEFAULT NULL,
+  `IMDb` float(2,1) DEFAULT NULL,
   `count_views` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -103,7 +102,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `login` varchar(255) NOT NULL,
-  `create` datetime NOT NULL DEFAULT current_timestamp()
+  `create` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -131,17 +130,17 @@ ALTER TABLE `comment`
   ADD KEY `key_user` (`key_user`,`key_movie`);
 
 --
--- Индексы таблицы `like`
+-- Индексы таблицы `likes`
 --
-ALTER TABLE `like`
+ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `key_user` (`key_user`),
   ADD KEY `key_movie` (`key_movie`);
 
 --
--- Индексы таблицы `movie`
+-- Индексы таблицы `movies`
 --
-ALTER TABLE `movie`
+ALTER TABLE `movies`
   ADD PRIMARY KEY (`id`);
 
 --
