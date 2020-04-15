@@ -17,8 +17,8 @@ exports.create = (user, callback) => {
   })
 }
 exports.update = (id, data, callback) => {
-  const sql = `UPDATE users SET ${helper.queryString(data).key} WHERE id = ?`
-  db.get().query(sql, [...helper.queryString(data).value, id], (error, result) => {
+  const sql = `UPDATE users SET ${helper.preparationLineUpdate(data).key} WHERE id = ?`
+  db.get().query(sql, [...helper.preparationLineUpdate(data).value, id], (error, result) => {
     callback(error, result)
   })
 }
